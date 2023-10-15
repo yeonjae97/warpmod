@@ -1,5 +1,6 @@
 package com.example.warpmod.commands;
 
+import com.example.warpmod.Colorable;
 import com.example.warpmod.WarpMod;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -12,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
 
-public class WarpCommand {
+public class WarpCommand implements Colorable {
 
 
     public WarpCommand(CommandDispatcher<CommandSource> dispatcher) {
@@ -29,29 +30,11 @@ public class WarpCommand {
                 int z = command.getArgument("z", Integer.class);
 
                 player.setPositionAndUpdate(x,y,z);
-                String pos = "(" + x + ", " + y + ", " + z + ")";
+                String pos = "(" + green + x + ", " + blue + y + ", " + yellow + z + ")";
                 command.getSource().sendFeedback(new StringTextComponent(pos + "으로 텔레포트 되었습니다."), true);
 
             return 1;
         })))));
     }
 
-//    private int warp(CommandSource source) throws CommandSyntaxException {
-//        ServerPlayerEntity player = source.asPlayer();
-//        int x = source.
-//
-//        boolean hasHomepos = player.getPersistentData().getIntArray(WarpMod.MOD_ID + "homepos").length != 0;
-//
-//        if(hasHomepos) {
-//            int[] playerPos = player.getPersistentData().getIntArray(WarpMod.MOD_ID + "homepos");
-//            player.setPositionAndUpdate(playerPos[0], playerPos[1], playerPos[2]);
-//
-//            source.sendFeedback(new StringTextComponent(""), true);
-//            return 1;
-//        } else {
-//            source.sendFeedback(new StringTextComponent("No Home Position has been set!"), true);
-//            return -1;
-//        }
-//
-//    }
 }
